@@ -1,5 +1,13 @@
-{{id}}. {{product ? product.name : null}}
-<br/>
-<img src="{{product ? product.url : null }}" width="50%"/>
+<div class="ng-product-single p-4">
+  <div class="row">
+    <div class="col-4">
+      {{id}}. {{product ? product.name : null}}
+        <br/>
+      <button>Add To Cart</button>
 
-Add to cart
+    </div>
+    <div class="col-8">
+      <img src="{{product ? product.url : null }}" class="w-100"/>
+    </div>
+  </div>
+</div>
