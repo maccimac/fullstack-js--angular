@@ -1,9 +1,30 @@
-<div class="ng-product-single p-4">
+<div *ngIf="product" class="ng-product-single p-4">
   <div class="row">
     <div class="col-6">
-      {{id}}. {{product ? product.name : null}}
+      <div class="single__main-details">
+        <h4>
+          {{ product.name }}
+        </h4>
+        <strong>
+          {{product.price}}
+        </strong>
+
+      </div>
+      <div *ngIf="isSinglePage" class="single__misc-details">
+        <p>
+          <strong>product id: </strong> {{id}}
+        </p>
+        <p>
+          {{ product.description }}
+        </p>
+
+      </div>
+
         <br/>
-      <button>Add To Cart</button>
+      <button (click)="order()">Add To Cart</button>
+      <br/>
+      <a *ngIf="!isSinglePage" routerLink="/product/{{id}}">View details</a>
+
 
     </div>
     <div class="col-6">

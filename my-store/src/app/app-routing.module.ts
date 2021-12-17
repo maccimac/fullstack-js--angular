@@ -12,6 +12,7 @@ import { ConfirmationComponent } from './checkout/confirmation/confirmation.comp
 const routes: Routes = [
   {path: '', component: ProductsAllComponent},
   {path: 'product/:id', component: ProductSingleComponent},
+  {path: 'cart', component: CartSummaryComponent},
 
 ];
 

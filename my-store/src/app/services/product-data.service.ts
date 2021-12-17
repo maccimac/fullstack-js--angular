@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ProductItem} from '../../models/types'
+import {ProductItem} from '../models/types'
 @Injectable({
   providedIn: 'root'
 })
@@ -57,13 +57,20 @@ export class ProductDataService {
     return this.allProducts
   }
 
-  fetchSingleProduct(id: number): ProductItem | null{
+  fetchSingleProduct(id: number): ProductItem | null {
     if(!this.allProducts.length) return null
 
-    const findProduct = this.allProducts.filter( (product: ProductItem) =>{
-      console.log(product)
+    /*const findProduct = this.allProducts.filter( (product: ProductItem) =>{
       return product.id == id
     })
     return findProduct[0]
+    */
+
+    const findProduct = this.allProducts.find( (product: ProductItem) => {return product.id == id} )
+
+
+    if (findProduct) return findProduct
+    return null
+
   }
 }
