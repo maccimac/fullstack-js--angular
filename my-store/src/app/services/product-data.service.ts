@@ -60,12 +60,6 @@ export class ProductDataService {
   fetchSingleProduct(id: number): ProductItem | null {
     if(!this.allProducts.length) return null
 
-    /*const findProduct = this.allProducts.filter( (product: ProductItem) =>{
-      return product.id == id
-    })
-    return findProduct[0]
-    */
-
     const findProduct = this.allProducts.find( (product: ProductItem) => {return product.id == id} )
 
 

@@ -13,10 +13,13 @@ import { ProductItem, OrderItem, ProductOrder } from '../../models/types'
 })
 export class ProductSingleComponent implements OnInit {
 
-  @Input() propId: number = 0
-  id: number | null = null
+  @Input() propId: number  = 0
+  id: number  = 0
   product: ProductItem | null = null
   isSinglePage: boolean = false
+
+  qty: number = 1
+  numEvt: Event | null = null
 
   constructor(
     private route: ActivatedRoute,
@@ -26,14 +29,14 @@ export class ProductSingleComponent implements OnInit {
 
   }
 
-  findId(): number | null {
+  findId(): number {
     const paramId = this.route.snapshot.paramMap.get('id');
     if(paramId){
       return parseInt(paramId)
     }else if(this.propId){
       return this.propId
     }
-    return null
+    return 0
   }
 
   findSingleProductDetail(){
@@ -43,12 +46,10 @@ export class ProductSingleComponent implements OnInit {
   order():void {
     const newOrder: OrderItem = {
       id: this.id,
-      qty: 1
+      qty: this.qty
     }
     this.cart.addItem(newOrder)
-
   }
-
 
   async ngOnInit(): Promise<void> {
     if(this.route.routeConfig && this.route.routeConfig.path =='product/:id'){
@@ -57,6 +58,15 @@ export class ProductSingleComponent implements OnInit {
     this.id = await this.findId()
    if(this.id){
     this.product = this.productData.fetchSingleProduct(this.id)
+   }
+
+ }
+
+ qtyChange(evt: Event){
+   console.log(evt)
+
+   if(evt.target){
+
    }
 
  }

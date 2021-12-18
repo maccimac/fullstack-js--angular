@@ -7,6 +7,7 @@ import { OrderItem } from '../models/types'
 export class CartService {
 
   orderList: OrderItem[] = []
+  totalPrice: number = 0
 
   constructor() { }
 
@@ -16,16 +17,25 @@ export class CartService {
 
   addItem(orderPayload: OrderItem){
     const {id, qty} = orderPayload
-    const alreadyInOrder = this.orderList.filter( order => {
-      order.id == id
+
+    if (!this.orderList.length){
+      this.orderList.push(orderPayload)
+      return
+    }
+
+    const findOrderIndex = this.orderList.findIndex( (order: OrderItem) => {
+      return order.id == id
     })
 
-    if(!alreadyInOrder.length){
+    if(findOrderIndex > -1){
+      const oldQty = this.orderList[findOrderIndex].qty
+      this.orderList[findOrderIndex].qty = oldQty + qty
+    }else{
       this.orderList.push(orderPayload)
-      console.log(this.orderList)
     }
 
   }
+
   decreaseItem(orderPayload: OrderItem){
 
   }

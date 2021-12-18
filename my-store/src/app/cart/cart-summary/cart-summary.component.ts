@@ -12,8 +12,8 @@ import { OrderItem, ProductItem, ProductOrder } from '../../models/types'
 })
 
 export class CartSummaryComponent implements OnInit {
-  allProducts: ProductItem[] = []
   orderProductList: ProductOrder[] =  []
+  totalPrice: number = 0
 
   constructor(
     private productData: ProductDataService,
@@ -22,20 +22,25 @@ export class CartSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderProductList = []
-    this.allProducts = this.allProducts
+    this.totalPrice = 0
+    this.organizeAllProduct()
+  }
+
+  organizeAllProduct(): void {
     this.cart.orderList.map( order => {
       const product = this.productData.fetchSingleProduct(Number(order.id))
       console.log(product)
       if(product){
+        const totalPrice = product.price * order.qty
         const productItem: ProductOrder = {
           ... product,
           ... order,
-          total_price: product.price * order.qty
+          total_price: totalPrice
         }
+        this.totalPrice = this.totalPrice + totalPrice
         this.orderProductList.push(productItem)
       }
     })
-
   }
 
 

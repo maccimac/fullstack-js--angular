@@ -10,14 +10,24 @@
       <th scope="col">Total</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="orderProductList.length">
     <tr *ngFor="let order of orderProductList" >
-      <th scope="row">{{order.name}}</th>
+      <th>{{order.name}}</th>
       <td>{{order.id}}</td>
       <td>{{order.price}}</td>
       <td>{{order.qty}}</td>
       <td>{{order.total_price}}</td>
     </tr>
+    <tr >
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <th>TOTAL: {{totalPrice}}</th>
+    </tr>
+  </tbody>
+  <tbody *ngIf="!orderProductList.length">
+    <strong>No order</strong>
   </tbody>
 </table>
 

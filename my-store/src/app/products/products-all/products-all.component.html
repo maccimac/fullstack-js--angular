@@ -1,14 +1,9 @@
-<div class="row centered">
-  <h1>Welcome to the shop</h1>
-</div>
 <div class="row">
-  <div class="col-md-6 col-xl-4">
-    <app-product-single [propId]="4"></app-product-single>
-  </div>
-  <div class="col-md-6 col-xl-4">
-    <app-product-single [propId]="2"></app-product-single>
-  </div>
-  <div class="col-md-6 col-xl-4">
-    <app-product-single [propId]="1"></app-product-single>
+  <h1 class="text-center">Welcome to the shop</h1>
+</div>
+
+<div class="row">
+  <div *ngFor="let product of allProducts" class="col-md-6 col-xl-4">
+    <app-product-single [propId]="product.id"></app-product-single>
   </div>
 </div>

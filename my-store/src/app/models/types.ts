@@ -1,5 +1,5 @@
 export interface ProductItem {
-  id: string | number
+  id: number
   name: string
   url: string
   description: string
@@ -7,12 +7,12 @@ export interface ProductItem {
 }
 
 export interface OrderItem {
-  id: string | number | null
+  id: number | null
   qty: number
 }
 
 export interface ProductOrder {
-  id: string | number | null
+  id: number | null
   qty: number
   name: string
   url: string
