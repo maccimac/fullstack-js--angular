@@ -29,29 +29,25 @@ export class CartSummaryComponent implements OnInit {
 
     this.subscribe = this.cart.getProductOrderChangeEmitter()
       .subscribe((orderProductList: ProductOrder[]) =>{
-        console.log({orderProductList: this.orderProductList})
         _this.orderProductList = orderProductList
+        _this.totalPrice = _this.cart.totalPrice
       })
   }
 
-  onChange(id: number | null): void {
-    /*if(!id) return
-    const productIndex = this.orderProductList.findIndex((product)=>{
-      return product.id == id
-    })
-    const product = this.orderProductList[productIndex]
-    const newTotal = product.price * product.qty*/
-    // this.orderProductList[productIndex].total_price = newTotal
+  onChange(id: number | null, qty: number): void {
+    console.log(id, qty)
+    const orderPayload = {
+      id,
+      qty
+    }
+    this.cart.updateItemQty(orderPayload)
+    this.totalPrice = this.cart.totalPrice
   }
 
-  /*findTotal(){
-    this.totalPrice = 0;
-    this.orderProductList.map(product=>{
-      const newTotal = product.price * product.qty
-      product.total_price = newTotal
-      this.totalPrice = this.totalPrice + newTotal
-    })
-  }*/
+  removeOrder(id: number | null){
+    console.log({id})
+    this.cart.removeOrder(id)
+  }
 
   remove(id: number){
 

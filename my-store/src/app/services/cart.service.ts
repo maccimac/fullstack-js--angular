@@ -10,9 +10,10 @@ export class CartService {
   orderList: OrderItem[] = []
   orderProductList: ProductOrder[] =  []
   totalPrice: number = 0
-  orderChange: EventEmitter<number> = new EventEmitter();
+  totalOrderCount: number = 0
+
+  orderItemCount: EventEmitter<number> = new EventEmitter();
   orderProductChange: EventEmitter<ProductOrder[]> = new EventEmitter();
-  totalOrder: number = 0
 
   constructor(
     private productData: ProductDataService,
@@ -30,42 +31,65 @@ export class CartService {
     })
     console.log({findOrderIndex})
 
-    if(findOrderIndex > -1){
+    if(findOrderIndex > -1){ // if found in order
       const oldQty = this.orderList[findOrderIndex].qty
       this.orderList[findOrderIndex].qty = oldQty + qty
       this.mapOrderProduct()
-    }else{
+    }else{ // if new product in orders
       this.orderList.push(orderPayload)
       this.mapOrderProduct()
     }
-
-    this.totalOrder = this.totalOrder + orderPayload.qty
-    this.orderChange.emit(this.totalOrder);
   }
 
-  decreaseItem(orderPayload: OrderItem){
+  async updateItemQty(orderPayload: OrderItem){
+    console.log(orderPayload)
+    const {id, qty} = orderPayload
 
+    const findOrderIndex = this.orderList.findIndex( (order: OrderItem) => {
+      return order.id == id
+    })
+    console.log({findOrderIndex})
+
+    if(findOrderIndex == -1) return
+
+    this.orderList[findOrderIndex] = orderPayload
+    this.mapOrderProduct()
+  }
+
+  removeOrder(id: number | null){
+    const orderList = this.orderList.filter( order => {
+      return order.id !== id
+    })
+    this.orderList = orderList
+    console.log(this.orderList)
+
+    this.mapOrderProduct()
   }
 
   mapOrderProduct(): void {
     this.orderProductList = []
-    console.log('mapOrderProduct')
+    this.totalPrice = 0;
+    this.totalOrderCount = 0
+
     this.orderList.map( order => {
       const product = this.productData.fetchSingleProduct(Number(order.id))
-      console.log(product)
-      if(product){
-        const totalPrice = product.price * order.qty
-        const productItem: ProductOrder = {
-          ... product,
-          ... order,
-          total_price: totalPrice
-        }
-        this.totalPrice = this.totalPrice + totalPrice
-        this.orderProductList.push(productItem)
+
+      if(!product) return
+
+      const totalPrice = product.price * order.qty
+      const productItem: ProductOrder = {
+        ... product,
+        ... order,
+        total_price: totalPrice
       }
-    })
-    console.log({orderList: this.orderList})
+      this.totalPrice = this.totalPrice + totalPrice
+      this.totalOrderCount = this.totalOrderCount + order.qty
+      this.orderProductList.push(productItem)
+
+    }) // end of map
+    console.log('mapOrderProduct, after map')
     this.orderProductChange.emit(this.orderProductList)
+    this.orderItemCount.emit(this.totalOrderCount)
   }
 
   findTotal(){
@@ -78,7 +102,7 @@ export class CartService {
   }
 
   getOrderTotalChangeEmitter() {
-    return this.orderChange;
+    return this.orderItemCount;
   }
 
   getProductOrderChangeEmitter() {

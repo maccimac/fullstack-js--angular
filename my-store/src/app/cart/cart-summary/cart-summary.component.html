@@ -23,7 +23,7 @@
             type="number"
             required
             class="form-control"
-            (change)="onChange(order.id)"
+            (change)="onChange(order.id, order.qty)"
             min="1"
             max="10"
           />
@@ -31,7 +31,7 @@
       </td>
       <td>{{order.total_price}}</td>
       <td>
-        <div class="btn btn-danger">Remove</div>
+        <div class="btn btn-danger" (click)="removeOrder(order.id)">Remove</div>
       </td>
     </tr>
     <tr >

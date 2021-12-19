@@ -14,10 +14,6 @@ import { ProductItem, OrderItem, ProductOrder } from '../../models/types'
 export class ProductSingleComponent implements OnInit {
 
   @Input() propId: number  = 0
-  // @Input() title: string = ''
-  @Output() totalOrders = new EventEmitter<number>()
-  // @Input() marked: boolean = false
-
 
   id: number  = 0
   product: ProductItem | null = null
@@ -60,8 +56,6 @@ export class ProductSingleComponent implements OnInit {
    if(this.id){
     this.product = this.productData.fetchSingleProduct(this.id)
    }
-   // this.cart.orderList.length
-   this.totalOrders.emit(3)
 
  }
 
