@@ -14,6 +14,8 @@ import { OrderItem, ProductItem, ProductOrder } from '../../models/types'
 export class CartSummaryComponent implements OnInit {
   orderProductList: ProductOrder[] =  []
   totalPrice: number = 0
+  subscribe: any
+
 
   constructor(
     private productData: ProductDataService,
@@ -21,27 +23,42 @@ export class CartSummaryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.orderProductList = []
-    this.totalPrice = 0
-    this.organizeAllProduct()
+    const _this = this
+    this.orderProductList = this.cart.orderProductList
+    this.totalPrice = this.cart.totalPrice
+
+    this.subscribe = this.cart.getProductOrderChangeEmitter()
+      .subscribe((orderProductList: ProductOrder[]) =>{
+        console.log({orderProductList: this.orderProductList})
+        _this.orderProductList = orderProductList
+      })
   }
 
-  organizeAllProduct(): void {
-    this.cart.orderList.map( order => {
-      const product = this.productData.fetchSingleProduct(Number(order.id))
-      console.log(product)
-      if(product){
-        const totalPrice = product.price * order.qty
-        const productItem: ProductOrder = {
-          ... product,
-          ... order,
-          total_price: totalPrice
-        }
-        this.totalPrice = this.totalPrice + totalPrice
-        this.orderProductList.push(productItem)
-      }
+  onChange(id: number | null): void {
+    /*if(!id) return
+    const productIndex = this.orderProductList.findIndex((product)=>{
+      return product.id == id
     })
+    const product = this.orderProductList[productIndex]
+    const newTotal = product.price * product.qty*/
+    // this.orderProductList[productIndex].total_price = newTotal
   }
 
+  /*findTotal(){
+    this.totalPrice = 0;
+    this.orderProductList.map(product=>{
+      const newTotal = product.price * product.qty
+      product.total_price = newTotal
+      this.totalPrice = this.totalPrice + newTotal
+    })
+  }*/
+
+  remove(id: number){
+
+  }
+
+  checkout(){
+    // this.router.navigate(['orders']);
+  }
 
 }

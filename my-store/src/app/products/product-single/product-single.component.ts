@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProductDataService } from '../../services/product-data.service'
@@ -14,6 +14,11 @@ import { ProductItem, OrderItem, ProductOrder } from '../../models/types'
 export class ProductSingleComponent implements OnInit {
 
   @Input() propId: number  = 0
+  // @Input() title: string = ''
+  @Output() totalOrders = new EventEmitter<number>()
+  // @Input() marked: boolean = false
+
+
   id: number  = 0
   product: ProductItem | null = null
   isSinglePage: boolean = false
@@ -39,10 +44,6 @@ export class ProductSingleComponent implements OnInit {
     return 0
   }
 
-  findSingleProductDetail(){
-
-  }
-
   order():void {
     const newOrder: OrderItem = {
       id: this.id,
@@ -59,6 +60,8 @@ export class ProductSingleComponent implements OnInit {
    if(this.id){
     this.product = this.productData.fetchSingleProduct(this.id)
    }
+   // this.cart.orderList.length
+   this.totalOrders.emit(3)
 
  }
 

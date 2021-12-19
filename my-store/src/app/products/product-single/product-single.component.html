@@ -29,8 +29,7 @@
           min="1"
           max="10"
         />
-
-        <button (click)="order()">Add To Cart</button>
+        <button class="btn btn-primary" (click)="order()">Add To Cart</button>
       </div>
       <br/>
       <a *ngIf="!isSinglePage" routerLink="/product/{{id}}">View details</a>

@@ -5,6 +5,16 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'my-store';
+
+  constructor() { }
+
+  test(val: Event): void{
+    console.log({
+      test: val
+    })
+  }
+
 }
