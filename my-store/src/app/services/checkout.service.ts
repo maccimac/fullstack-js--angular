@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/types'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
 
-  user: {
+  user: User = {
     name: '',
-    mobile: 000,
-    address: ''
-  },
-  order:{
-    id: 0,
-    status: 'pending'
-    total: 0
-  },
+    mobile: 0,
+    address: '',
+    email: 'user@email.com'
+  }
+
 
   constructor() { }
 }

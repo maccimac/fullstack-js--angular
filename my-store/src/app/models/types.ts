@@ -20,3 +20,11 @@ export interface ProductOrder {
   price: number,
   total_price: number
 }
+
+
+export interface User {
+  name: string
+  mobile: number
+  email: string
+  address: string
+}

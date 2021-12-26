@@ -1,1 +1,25 @@
-<p>user-details works!</p>
+<div class="">
+
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Full Name</label>
+    <input class="form-control" [(ngModel)]="user.name"/>
+  </div>
+
+  <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input
+    type="email"
+    class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+    [(ngModel)]="user.email"
+  >
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Mobile</label>
+  <input class="form-control" [(ngModel)]="user.mobile"/>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" [(ngModel)]="user.address"></textarea>
+</div>
+
+</div>

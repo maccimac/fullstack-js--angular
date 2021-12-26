@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckoutService} from '../../services/checkout.service'
+import { User } from '../../models/types'
 
 @Component({
   selector: 'app-user-details',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailsComponent implements OnInit {
 
-  constructor() { }
+  user: User = {
+    name: 'John Smith',
+    mobile: 0,
+    address: '',
+    email: 'user@email.com'
+  }
+
+  constructor(
+    private checkout: CheckoutService
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.user)
   }
 
 }

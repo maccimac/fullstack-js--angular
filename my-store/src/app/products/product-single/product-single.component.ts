@@ -11,6 +11,7 @@ import { ProductItem, OrderItem, ProductOrder } from '../../models/types'
   templateUrl: './product-single.component.html',
   styleUrls: ['./product-single.component.scss']
 })
+
 export class ProductSingleComponent implements OnInit {
 
   @Input() propId: number  = 0

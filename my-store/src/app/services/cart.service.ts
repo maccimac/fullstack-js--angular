@@ -12,7 +12,7 @@ export class CartService {
   totalPrice: number = 0
   totalOrderCount: number = 0
 
-  orderItemCount: EventEmitter<number> = new EventEmitter();
+  totalItemCountChange: EventEmitter<number> = new EventEmitter();
   orderProductChange: EventEmitter<ProductOrder[]> = new EventEmitter();
 
   constructor(
@@ -29,7 +29,6 @@ export class CartService {
     const findOrderIndex = this.orderList.findIndex( (order: OrderItem) => {
       return order.id == id
     })
-    console.log({findOrderIndex})
 
     if(findOrderIndex > -1){ // if found in order
       const oldQty = this.orderList[findOrderIndex].qty
@@ -42,16 +41,11 @@ export class CartService {
   }
 
   async updateItemQty(orderPayload: OrderItem){
-    console.log(orderPayload)
     const {id, qty} = orderPayload
-
     const findOrderIndex = this.orderList.findIndex( (order: OrderItem) => {
       return order.id == id
     })
-    console.log({findOrderIndex})
-
     if(findOrderIndex == -1) return
-
     this.orderList[findOrderIndex] = orderPayload
     this.mapOrderProduct()
   }
@@ -61,8 +55,6 @@ export class CartService {
       return order.id !== id
     })
     this.orderList = orderList
-    console.log(this.orderList)
-
     this.mapOrderProduct()
   }
 
@@ -85,11 +77,10 @@ export class CartService {
       this.totalPrice = this.totalPrice + totalPrice
       this.totalOrderCount = this.totalOrderCount + order.qty
       this.orderProductList.push(productItem)
-
     }) // end of map
-    console.log('mapOrderProduct, after map')
+
     this.orderProductChange.emit(this.orderProductList)
-    this.orderItemCount.emit(this.totalOrderCount)
+    this.totalItemCountChange.emit(this.totalOrderCount)
   }
 
   findTotal(){
@@ -102,7 +93,7 @@ export class CartService {
   }
 
   getOrderTotalChangeEmitter() {
-    return this.orderItemCount;
+    return this.totalItemCountChange;
   }
 
   getProductOrderChangeEmitter() {

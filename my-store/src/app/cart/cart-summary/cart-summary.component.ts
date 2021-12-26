@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input, Output} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProductDataService } from '../../services/product-data.service'
@@ -15,6 +15,7 @@ export class CartSummaryComponent implements OnInit {
   orderProductList: ProductOrder[] =  []
   totalPrice: number = 0
   subscribe: any
+  @Input() editable: boolean  = true
 
 
   constructor(
