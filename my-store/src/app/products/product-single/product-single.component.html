@@ -1,6 +1,6 @@
 <div *ngIf="product" class="ng-product-single p-4">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 col-xl-7">
       <div class="single__main-details">
         <h4>
           {{ product.name }}
@@ -36,7 +36,7 @@
 
 
     </div>
-    <div class="col-6">
+    <div class="col-6 col-xl-5">
       <img src="{{product ? product.url : null }}" class="w-100"/>
     </div>
   </div>

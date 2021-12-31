@@ -10,10 +10,10 @@ import { User } from '../../models/types'
 export class UserDetailsComponent implements OnInit {
 
   user: User = {
-    name: 'John Smith',
+    name: '',
     mobile: 0,
     address: '',
-    email: 'user@email.com'
+    email: ''
   }
 
   constructor(
@@ -22,6 +22,7 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.user)
+    this.user = this.checkout.user
   }
 
 }

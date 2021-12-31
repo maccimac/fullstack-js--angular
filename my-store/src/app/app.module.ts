@@ -12,6 +12,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { UserDetailsComponent } from './checkout/user-details/user-details.component';
 import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
 import { HeaderComponent } from './header/header.component';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
     UserDetailsComponent,
     ConfirmationComponent,
     HeaderComponent,
+    SuccessComponent,
   ],
   imports: [
     BrowserModule,

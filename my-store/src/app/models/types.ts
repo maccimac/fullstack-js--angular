@@ -24,7 +24,7 @@ export interface ProductOrder {
 
 export interface User {
   name: string
-  mobile: number
+  mobile: number | string
   email: string
   address: string
 }

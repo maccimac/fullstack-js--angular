@@ -8,13 +8,14 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UserDetailsComponent } from './checkout/user-details/user-details.component';
 import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
+import { SuccessComponent } from './success/success.component';
 
 const routes: Routes = [
   {path: '', component: ProductsAllComponent},
   {path: 'product/:id', component: ProductSingleComponent},
   {path: 'cart', component: CartSummaryComponent},
   {path: 'checkout', component: CheckoutComponent},
-
+  {path: 'success', component: SuccessComponent},
 ];
 
 @NgModule({
