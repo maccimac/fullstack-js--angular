@@ -1,25 +1,75 @@
 <div class="">
-
+<!-- <form [formGroup]="angForm" novalidate> -->
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Full Name</label>
-    <input class="form-control" [(ngModel)]="user.name"/>
+    <input
+      class="form-control"
+      [(ngModel)]="user.name"
+      #name="ngModel"
+      required
+      minlength="4"
+    />
+    <span class="small text-danger" *ngIf="name.invalid && user.name.length">
+      Invalid name
+    </span>
   </div>
 
   <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Email address</label>
   <input
     type="email"
-    class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+    class="form-control"
+    placeholder="name@example.com"
     [(ngModel)]="user.email"
+    #email="ngModel"
+    required
+    minlength="4"
+    email
   >
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Mobile</label>
-  <input class="form-control" [(ngModel)]="user.mobile"/>
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" [(ngModel)]="user.address"></textarea>
-</div>
+  <span class="small text-danger" *ngIf="email.invalid && user.email.length">
+    Invalid email
+  </span>
+
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Mobile</label>
+    <input
+      class="form-control"
+      [(ngModel)]="user.mobile"
+      #mobile="ngModel"
+      required
+      minlength="4"
+      mobile
+      />
+    <span class="small text-danger" *ngIf="mobile.invalid && (user.mobile + '').length">
+      Invalid mobile
+    </span>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+    <textarea
+      class="form-control" rows="2"
+      class="form-control"
+      [(ngModel)]="user.mobile"
+      #address="ngModel"
+      required
+      minlength="10"
+    ></textarea>
+    <span class="small text-danger" *ngIf="mobile.invalid && user.address.length">
+      Invalid address
+    </span>
+  </div>
+
+  <div class="mb-3 text-center">
+    <span class="small">Yes information is correct.</span>
+    <br/>
+    <button class="btn btn-success" routerLink="/success" [disabled]="email.invalid || name.invalid || mobile.invalid || address.invalid">
+      Process my order
+    </button>
+  </div>
+<!-- </form> -->
+
 
 </div>

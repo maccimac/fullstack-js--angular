@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import {Router} from "@angular/router"
+import { Router } from "@angular/router"
 import { CheckoutService} from '../services/checkout.service'
 import { User } from '../models/types'
 

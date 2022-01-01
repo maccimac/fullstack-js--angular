@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService} from '../../services/checkout.service'
 import { User } from '../../models/types'
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-details',
