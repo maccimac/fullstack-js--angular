@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Router } from "@angular/router"
 import { CheckoutService} from '../services/checkout.service'
 import { CartService } from '../services/cart.service'
@@ -43,7 +43,6 @@ export class SuccessComponent implements OnInit {
     this.user = this.checkout.user
 
     this.cart.resetOrder()
-
   }
 
 

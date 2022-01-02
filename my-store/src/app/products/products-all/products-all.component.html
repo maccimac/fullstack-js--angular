@@ -1,9 +1,18 @@
+
 <div class="row">
   <h1 class="text-center">Welcome to the shop</h1>
 </div>
 
 <div class="row">
   <div *ngFor="let product of allProducts" class="col-md-6 col-xl-4">
-    <app-product-single [propId]="product.id"></app-product-single>
+    <app-product-single [propId]="product.id" (newOrder)="alert($event)"></app-product-single>
+  </div>
+</div>
+
+<div *ngIf="showAlert" class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast show text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body text-center">
+      You bought {{productBought}}.
+    </div>
   </div>
 </div>

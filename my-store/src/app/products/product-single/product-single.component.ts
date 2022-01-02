@@ -15,10 +15,12 @@ import { ProductItem, OrderItem, ProductOrder } from '../../models/types'
 export class ProductSingleComponent implements OnInit {
 
   @Input() propId: number  = 0
+  @Output() newOrder = new EventEmitter<string>();
 
   id: number  = 0
   product: ProductItem | undefined = undefined
   isSinglePage: boolean = false
+  showAlert: boolean = false
 
   qty: number = 1
   numEvt: Event | null = null
@@ -47,6 +49,16 @@ export class ProductSingleComponent implements OnInit {
       qty: this.qty
     }
     this.cart.addItem(newOrder)
+    if (!this.product) return
+    if(this.isSinglePage){
+      this.showAlert = true
+      setTimeout(() => {
+        this.showAlert = false
+      }, 3000);
+    }else{
+      this.newOrder.emit(this.product.name);
+    }
+
   }
 
   async ngOnInit(): Promise<void> {

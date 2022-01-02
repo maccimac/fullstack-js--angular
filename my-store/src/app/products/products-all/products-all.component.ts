@@ -10,6 +10,8 @@ import { ProductItem } from '../../models/types'
 export class ProductsAllComponent implements OnInit {
 
   allProducts: ProductItem[] = []
+  showAlert: boolean = false
+  productBought: string = ''
 
   constructor(
     private productData: ProductDataService
@@ -23,5 +25,15 @@ export class ProductsAllComponent implements OnInit {
       this.allProducts = data
     })
   }
+
+  alert(name: string): void {
+    this.showAlert = true;
+    this.productBought = name
+    setTimeout(() => {
+      this.showAlert = false
+      this.productBought = ''
+    }, 3000);
+  }
+
 
 }
