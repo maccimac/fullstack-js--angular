@@ -38,6 +38,9 @@ export class CartService {
       this.orderList.push(orderPayload)
       this.mapOrderProduct()
     }
+
+    this.orderProductChange.emit(this.orderProductList)
+    this.totalItemCountChange.emit(this.totalOrderCount)
   }
 
   async updateItemQty(orderPayload: OrderItem){
@@ -58,29 +61,40 @@ export class CartService {
     this.mapOrderProduct()
   }
 
-  mapOrderProduct(): void {
+  async mapOrderProduct(): Promise<void> {
+    const _this = this
+    // console.log('mapOrderProduct')
     this.orderProductList = []
     this.totalPrice = 0;
     this.totalOrderCount = 0
+    console.log(this.orderList)
 
-    this.orderList.map( order => {
-      const product = this.productData.fetchSingleProduct(Number(order.id))
+    for( let i = 0; i < this.orderList.length; i++){
 
-      if(!product) return
+      // let product: ProductItem | undefined = undefined
+      const order = this.orderList[i]
 
-      const totalPrice = product.price * order.qty
-      const productItem: ProductOrder = {
-        ... product,
-        ... order,
-        total_price: totalPrice
-      }
-      this.totalPrice = this.totalPrice + totalPrice
-      this.totalOrderCount = this.totalOrderCount + order.qty
-      this.orderProductList.push(productItem)
-    }) // end of map
+      this.productData.fetchProducts().subscribe(data=>{
+        const product = data.find( item => { return item.id == order.id } )
 
-    this.orderProductChange.emit(this.orderProductList)
-    this.totalItemCountChange.emit(this.totalOrderCount)
+        if(!product) return
+        const totalPrice = product.price * order.qty
+        const productItem: ProductOrder = {
+          ... product,
+          ... order,
+          total_price: totalPrice
+        }
+        this.totalPrice = this.totalPrice + totalPrice
+        this.totalOrderCount = this.totalOrderCount + order.qty
+        this.orderProductList.push(productItem)
+
+        if(i == this.orderList.length-1){
+          this.orderProductChange.emit(this.orderProductList)
+          this.totalItemCountChange.emit(this.totalOrderCount)
+        }
+      })
+    }
+
   }
 
   findTotal(){
@@ -98,6 +112,16 @@ export class CartService {
 
   getProductOrderChangeEmitter() {
     return this.orderProductChange;
+  }
+
+  resetOrder(){
+    this.orderList = []
+    this.orderProductList =  []
+    this.totalPrice = 0
+    this.totalOrderCount = 0
+
+    this.orderProductChange.emit(this.orderProductList)
+    this.totalItemCountChange.emit(this.totalOrderCount)
   }
 
 

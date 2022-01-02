@@ -17,7 +17,7 @@ export class ProductSingleComponent implements OnInit {
   @Input() propId: number  = 0
 
   id: number  = 0
-  product: ProductItem | null = null
+  product: ProductItem | undefined = undefined
   isSinglePage: boolean = false
 
   qty: number = 1
@@ -55,18 +55,14 @@ export class ProductSingleComponent implements OnInit {
     }
     this.id = await this.findId()
    if(this.id){
-    this.product = this.productData.fetchSingleProduct(this.id)
+     const id = this.id
+    // this.product = await this.productData.fetchSingleProduct(this.id)
+    this.productData.fetchProducts().subscribe(data=>{
+      this.product = data.find( product => { return product.id == id } )
+    })
    }
 
  }
 
- qtyChange(evt: Event){
-   console.log(evt)
-
-   if(evt.target){
-
-   }
-
- }
 
 }

@@ -19,12 +19,20 @@ export class CheckoutService {
 
   isUserReady(): boolean{
     const userVals = [
-      this.user.name,
-      this.user.mobile,
-      this.user.address,
-      this.user.email,
+      this.user.name.length,
+      (this.user.mobile + '').length,
+      this.user.address.length,
+      this.user.email.length,
     ]
-    if( userVals.includes('') || userVals.includes(0)) return false
+    if(userVals.includes(0)) return false
     return true
+  }
+  resetUser():void{
+    this.user= {
+      name: '',
+      mobile: '',
+      address: '',
+      email: ''
+    }
   }
 }

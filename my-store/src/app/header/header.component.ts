@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
     const _this = this
     this.subscribe = this.cart.getOrderTotalChangeEmitter()
       .subscribe((orderTotal: number) =>{
+        console.log({orderTotal})
         _this.orderCount = orderTotal
       })
   }

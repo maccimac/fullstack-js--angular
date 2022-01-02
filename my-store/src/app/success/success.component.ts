@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router"
 import { CheckoutService} from '../services/checkout.service'
+import { CartService } from '../services/cart.service'
 import { User } from '../models/types'
 
 function addDays(date: Date, days :number): Date {
@@ -30,7 +31,8 @@ export class SuccessComponent implements OnInit {
 
   constructor(
     private checkout: CheckoutService,
-    private router: Router
+    private router: Router,
+    private cart: CartService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -39,6 +41,8 @@ export class SuccessComponent implements OnInit {
     }
     this.deliveryDueDate = await addDays(new Date(), 5)
     this.user = this.checkout.user
+
+    this.cart.resetOrder()
 
   }
 
