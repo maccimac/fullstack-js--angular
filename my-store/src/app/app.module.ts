@@ -11,7 +11,6 @@ import { CartSummaryComponent } from './cart/cart-summary/cart-summary.component
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UserDetailsComponent } from './checkout/user-details/user-details.component';
-import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
 import { HeaderComponent } from './header/header.component';
 import { SuccessComponent } from './success/success.component';
 
@@ -24,7 +23,6 @@ import { SuccessComponent } from './success/success.component';
     CartItemComponent,
     CheckoutComponent,
     UserDetailsComponent,
-    ConfirmationComponent,
     HeaderComponent,
     SuccessComponent,
   ],

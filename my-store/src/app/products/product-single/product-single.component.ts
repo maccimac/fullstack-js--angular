@@ -68,7 +68,6 @@ export class ProductSingleComponent implements OnInit {
     this.id = await this.findId()
    if(this.id){
      const id = this.id
-    // this.product = await this.productData.fetchSingleProduct(this.id)
     this.productData.fetchProducts().subscribe(data=>{
       this.product = data.find( product => { return product.id == id } )
     })

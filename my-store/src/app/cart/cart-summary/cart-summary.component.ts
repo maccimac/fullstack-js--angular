@@ -55,7 +55,7 @@ export class CartSummaryComponent implements OnInit {
   }
 
   checkout(){
-    // this.router.navigate(['orders']);
+  
   }
 
 }

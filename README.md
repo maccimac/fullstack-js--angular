@@ -1,7 +1,9 @@
 # Angular Store
 
+
 ## Description
 Simple but dynamic store using Angular. Uses both frontend and backend functionalities.
+
 
 ## How to start
 1. Open terminal in project folder
@@ -9,9 +11,11 @@ Simple but dynamic store using Angular. Uses both frontend and backend functiona
 3. Run `ng serve`
 4. Open in browser `localhost:4200` or whatever terminal recommends
 
+
 ## Project features / scaffold
+- Uses typescript typing
 - Fetches product data using HttpClient
-- Orders are updated in a single service
+- Orders are updated in services
 - Mobile responsive
 
 #### Header
@@ -23,10 +27,10 @@ Route: Shown in all routes
 #### Products
 Routes:
   * Homepage [`/`] - Houses all the items
-  * Singe product page [ /product/:id ]- Displays additional product detail
+  * Singe product page [`/product/:id`]- Displays additional product detail
 
 - Can change item quantity
-- Shows notification when items are added
+- Shows notification when items are added; Hides in 3 seconds
 
 #### Cart
 Route: [`/cart`]
@@ -38,7 +42,7 @@ Route: [`/cart`]
 
 #### Checkout
 Route: [`/checkout`]
-- Shows quicks summary of orders. Updating is no longer possible here
+- Shows quicks summary of orders; Updating is no longer possible here
 - Allows for input of user details
 - Uses form verification
 - Has warning for invalid values
