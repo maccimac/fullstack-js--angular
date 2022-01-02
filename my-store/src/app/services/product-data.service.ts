@@ -20,7 +20,7 @@ export class ProductDataService {
   }
 
   fetchProducts():Observable<ProductItem[]>{
-    return this.http.get<ProductItem[]>(`${window.origin}/assets/data.txt`)
+    return this.http.get<ProductItem[]>(`${window.origin}/assets/data.json`)
   }
 
   async fetchAllProductsArr(): Promise <ProductItem[]>{
