@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsAllComponent } from './products/products-all/products-all.component';
 import { ProductSingleComponent } from './products/product-single/product-single.component';
 import { CartSummaryComponent } from './cart/cart-summary/cart-summary.component';
-import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UserDetailsComponent } from './checkout/user-details/user-details.component';
 import { SuccessComponent } from './success/success.component';
@@ -15,6 +14,7 @@ const routes: Routes = [
   {path: 'cart', component: CartSummaryComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'success', component: SuccessComponent},
+  {path: '**', redirectTo: '/'}
 ];
 
 @NgModule({

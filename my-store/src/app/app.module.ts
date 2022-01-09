@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { ProductsAllComponent } from './products/products-all/products-all.component';
 import { ProductSingleComponent } from './products/product-single/product-single.component';
 import { CartSummaryComponent } from './cart/cart-summary/cart-summary.component';
-import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UserDetailsComponent } from './checkout/user-details/user-details.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,7 +19,6 @@ import { SuccessComponent } from './success/success.component';
     ProductsAllComponent,
     ProductSingleComponent,
     CartSummaryComponent,
-    CartItemComponent,
     CheckoutComponent,
     UserDetailsComponent,
     HeaderComponent,

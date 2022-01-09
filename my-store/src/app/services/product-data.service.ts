@@ -22,10 +22,10 @@ export class ProductDataService {
     return this.http.get<ProductItem[]>(`${window.origin}/assets/data.json`)
   }
 
-  async fetchAllProductsArr(): Promise <ProductItem[]>{
-    let  allProducts: ProductItem[] = []
+  /*async fetchAllProductsArr(): Promise <ProductItem[]>{
+    let allProducts: ProductItem[] = []
     await this.fetchProducts().subscribe(data => {return data}
     )
     return allProducts
-  }
+  }*/
 }
