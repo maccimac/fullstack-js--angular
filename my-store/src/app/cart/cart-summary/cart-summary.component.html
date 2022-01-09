@@ -34,7 +34,7 @@
       </td>
       <td>{{order.total_price}}</td>
       <td *ngIf="editable">
-        <div class="btn btn-danger" (click)="removeOrder(order.id)">Remove</div>
+        <div class="btn btn-danger" (click)="removeOrder(order.id, order.name)">Remove</div>
       </td>
     </tr>
     <tr >
@@ -52,5 +52,14 @@
 </table>
 
 <a *ngIf="orderProductList.length && editable" class="btn btn-success" routerLink="/checkout" >Checkout</a>
+
+
+<div *ngIf="showAlert && editable" class="position-fixed bottom-0 p-3 d-flex justify-content-end" style="z-index: 11">
+  <div id="liveToast" class="toast show text-white bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body text-center">
+      {{productRemoved}} has been removed
+    </div>
+  </div>
+</div>
 
 </div>

@@ -92,7 +92,6 @@ export class CartService {
         this.orderProductList.push(productItem)
 
         if(i == this.orderList.length-1){
-          console.log('for loop done', this.orderProductList)
           this.orderProductChange.emit(this.orderProductList)
           this.totalItemCountChange.emit(this.totalOrderCount)
         }

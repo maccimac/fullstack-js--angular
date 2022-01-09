@@ -12,9 +12,7 @@ export class AppComponent {
   constructor() { }
 
   test(val: Event): void{
-    console.log({
-      test: val
-    })
+    
   }
 
 }

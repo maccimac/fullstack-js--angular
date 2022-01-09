@@ -19,7 +19,6 @@ export class ProductsAllComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.productData.fetchProducts().subscribe(data=>{
-      console.log(data)
       this.allProducts = data
     })
   }

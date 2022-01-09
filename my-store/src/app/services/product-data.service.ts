@@ -14,7 +14,6 @@ export class ProductDataService {
 
   ngOnInit(){
       this.fetchProducts().subscribe(data=>{
-      console.log('product-data')
       this.allProducts = data
     })
   }

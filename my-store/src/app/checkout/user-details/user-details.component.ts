@@ -23,7 +23,6 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkout.resetUser()
-    console.log(this.user)
     this.user = this.checkout.user
   }
 

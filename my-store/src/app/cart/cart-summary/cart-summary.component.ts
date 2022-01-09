@@ -15,6 +15,8 @@ export class CartSummaryComponent implements OnInit {
   orderProductList: ProductOrder[] =  []
   totalPrice: number = 0
   subscribe: any
+  showAlert: boolean = false
+  productRemoved: string = ''
   @Input() editable: boolean  = true
 
 
@@ -30,7 +32,6 @@ export class CartSummaryComponent implements OnInit {
 
     this.subscribe = this.cart.getProductOrderChangeEmitter()
       .subscribe((orderProductList: ProductOrder[]) =>{
-        console.log('getProductOrderChangeEmitter')
         _this.orderProductList = orderProductList
         _this.totalPrice = _this.cart.totalPrice
       })
@@ -45,8 +46,15 @@ export class CartSummaryComponent implements OnInit {
     this.totalPrice = this.cart.totalPrice
   }
 
-  removeOrder(id: number | null){
+  removeOrder(id: number | null, name: string){
     this.cart.removeOrder(id)
+    this.productRemoved = name
+    this.showAlert = true
+    setTimeout(() => {
+      this.showAlert = false
+      this.productRemoved = ''
+    }, 3000);
+
   }
 
   remove(id: number){
