@@ -53,21 +53,24 @@ export class CartService {
     this.mapOrderProduct()
   }
 
-  removeOrder(id: number | null){
-    const orderList = this.orderList.filter( order => {
+  async removeOrder(id: number | null): Promise<void>{
+    this.orderList = await this.orderList.filter( order => {
       return order.id !== id
     })
-    this.orderList = orderList
-    this.mapOrderProduct()
+
+    if(this.orderList.length){
+      this.mapOrderProduct()
+    }else{
+      this.orderProductChange.emit([])
+      this.totalItemCountChange.emit(0)
+    }
   }
 
   async mapOrderProduct(): Promise<void> {
     const _this = this
-    // console.log('mapOrderProduct')
     this.orderProductList = []
     this.totalPrice = 0;
     this.totalOrderCount = 0
-    console.log(this.orderList)
 
     for( let i = 0; i < this.orderList.length; i++){
 
@@ -89,6 +92,7 @@ export class CartService {
         this.orderProductList.push(productItem)
 
         if(i == this.orderList.length-1){
+          console.log('for loop done', this.orderProductList)
           this.orderProductChange.emit(this.orderProductList)
           this.totalItemCountChange.emit(this.totalOrderCount)
         }

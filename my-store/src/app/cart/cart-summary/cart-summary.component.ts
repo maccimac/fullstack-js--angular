@@ -30,13 +30,13 @@ export class CartSummaryComponent implements OnInit {
 
     this.subscribe = this.cart.getProductOrderChangeEmitter()
       .subscribe((orderProductList: ProductOrder[]) =>{
+        console.log('getProductOrderChangeEmitter')
         _this.orderProductList = orderProductList
         _this.totalPrice = _this.cart.totalPrice
       })
   }
 
   onChange(id: number | null, qty: number): void {
-    console.log(id, qty)
     const orderPayload = {
       id,
       qty
@@ -46,7 +46,6 @@ export class CartSummaryComponent implements OnInit {
   }
 
   removeOrder(id: number | null){
-    console.log({id})
     this.cart.removeOrder(id)
   }
 
@@ -55,7 +54,7 @@ export class CartSummaryComponent implements OnInit {
   }
 
   checkout(){
-  
+
   }
 
 }
