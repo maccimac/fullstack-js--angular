@@ -23,7 +23,7 @@
             type="number"
             required
             class="form-control"
-            (change)="onChange(order.id, order.qty)"
+            (ngModelChange)="onChange(order.id, order.qty)"
             min="1"
             max="10"
           />
